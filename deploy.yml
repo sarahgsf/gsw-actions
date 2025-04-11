@@ -1,0 +1,20 @@
+name: Deploy no GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # ou 'master', dependendo do seu repositório
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pegar os arquivos do repositório
+      uses: actions/checkout@v3
+
+    - name: Deploy no GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .  # Aqui você define a pasta que contém o site
